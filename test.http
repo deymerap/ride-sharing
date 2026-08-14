@@ -1,0 +1,32 @@
+### Trip Preview
+#@ name tripPreviewRequest
+POST http://localhost:8081/trip/preview
+Content-Type: application/json
+
+{
+  "userID": "test-user-123",
+  "pickup": {
+    "latitude": 3.4014590446450748,
+    "longitude": -76.50460623853236
+  },
+  "destination": {
+    "latitude": 3.388645268030627,
+    "longitude": -76.51673468978132
+  }
+}
+
+#### Variable Response
+###@access_token = {{loginRequest.response.body.data.accessToken}}
+
+
+
+### OSRM
+GET http://router.project-osrm.org/route/v1/driving/13.388860,52.517037;13.397634,52.529407;13.428555,52.523219?overview=full&geometries=geojson
+Content-Type: application/json
+
+#### OSRMResponse
+###@osrmResponse = {{OSRMResponse.response.body}}
+
+### OSRM2*
+GET http://osrm.selfmadeengineering.com/route/v1/driving/13.388860,52.517037;13.397634,52.529407;13.428555,52.523219?overview=full&geometries=geojson
+Content-Type: application/json
